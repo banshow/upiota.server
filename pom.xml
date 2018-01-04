@@ -64,8 +64,11 @@
 		</dependency>
 
 
-		<!-- <dependency> <groupId>com.ifrabbit</groupId> <artifactId>spring-boot-starter-data-mybatis</artifactId> 
-			<version>${data-mybatis.version}</version> </dependency> -->
+		<!-- <dependency>
+			<groupId>com.ifrabbit</groupId>
+			<artifactId>spring-boot-starter-data-mybatis</artifactId>
+			<version>${data-mybatis.version}</version>
+		</dependency> -->
 
 		<!--mybatis -->
 		<dependency>

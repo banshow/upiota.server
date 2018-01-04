@@ -19,8 +19,8 @@ public class Resource{
 	@Column(name = "resource_type")
 	private String resourceType;
 	
-	@Column(name = "resource_key")
-	private String resourceKey;
+	@Column(name = "resource_code")
+	private String resourceCode;
 	
 	private String url;
 	
@@ -49,12 +49,12 @@ public class Resource{
 		this.resourceType = resourceType;
 	}
 
-	public String getResourceKey() {
-		return resourceKey;
+	public String getResourceCode() {
+		return resourceCode;
 	}
 
-	public void setResourceKey(String resourceKey) {
-		this.resourceKey = resourceKey;
+	public void setResourceCode(String resourceCode) {
+		this.resourceCode = resourceCode;
 	}
 
 	public String getUrl() {

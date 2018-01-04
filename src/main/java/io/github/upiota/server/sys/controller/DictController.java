@@ -4,8 +4,6 @@ package io.github.upiota.server.sys.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,10 +32,10 @@ public class DictController extends BaseController{
 	//@PreAuthorize("hasAuthority('systemManager')")
 	public ResponseResult list(Dict dict){
 //		Map<?, HandlerMethod> map =  this.handlerMapping.getHandlerMethods();
-//        Iterator<?> iterator = map.entrySet().iterator();
-//        while(iterator.hasNext()){
-//            Map.Entry<?, HandlerMethod> entry = (Map.Entry<?, HandlerMethod>) iterator.next();
-//            System.out.println(entry.getKey() +"\n" + entry.getValue());
+//      Iterator<?> iterator = map.entrySet().iterator();
+//      while(iterator.hasNext()){
+//         Map.Entry<?, HandlerMethod> entry = (Map.Entry<?, HandlerMethod>) iterator.next();
+//         System.out.println(entry.getKey() +"\n" + entry.getValue());
 //        }
 		List<Dict> page = dictRepository.selectAll();
 		return RestResultGenerator.genResult("成功!").putData("list", page);

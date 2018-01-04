@@ -84,7 +84,7 @@ public class ControllerTest {
 //		User u = userRepository.findOne(1l);
 		List<String> list = resourceRepository.listResourceByUserId(1l);
 		
-		System.out.println(list);
+		System.out.println(userRepository.selectUsernameByUsername("admin"));
 		
 		
 	}
@@ -107,7 +107,7 @@ public class ControllerTest {
 	public void testUserList() throws Exception {
 		this.mockMvc.perform(
 				get("/user/list")
-				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTQ5NjQ5NTU4MjE1MiwiZXhwIjoxNDk3MTAwMzgyfQ.g9lCduWQyX6xZPG7yv0kseFHJZPumgP_mBus-Ecm0c31g-f6bNdxFFNrPVl01fFq3HknuI4LWP2o10aZsb5_TQ")
+				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxMjAyMTQ0MTg0MCwiZXhwIjoxNTEyNjI2MjQxfQ.pY2YeKeU83hVaRvRn1sIsV92lMtQDokGGc0KYZO2ZXvpXPWzLej376HjsAlc3N4sG3ldXoxhKPsfEgcCv4c21w")
 				)
 		.andExpect(status().isOk()).andDo(print());
 	}
@@ -126,7 +126,7 @@ public class ControllerTest {
 		params.add("type", "SEX");
 		this.mockMvc.perform(
 				get("/dict/list")
-				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUwNTk4NTI4MzA5NiwiZXhwIjoxNTA2NTkwMDgzfQ.ODX_lD7Q8YhE0Uz8UZdCtgSkIGLbd4Gg1eGOWwhBFyj_2Nt8yki9XjRF9vNHk3aJLJT_jqv2Dmr8HPxwNMbXCQ")
+				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxMjAyMTQ0MTg0MCwiZXhwIjoxNTEyNjI2MjQxfQ.pY2YeKeU83hVaRvRn1sIsV92lMtQDokGGc0KYZO2ZXvpXPWzLej376HjsAlc3N4sG3ldXoxhKPsfEgcCv4c21w")
 				.params(params)
 				//.contentType(MediaType.APPLICATION_JSON_UTF8).content(requestJson)
 				)

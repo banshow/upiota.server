@@ -3,8 +3,6 @@ package io.github.upiota.server.base;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
@@ -35,7 +33,7 @@ public class RestExceptionHandler {
     @ResponseBody
     private ResponseResult globalExceptionHandler(Exception e) {
         logger.error("--------->接口调用异常!", e);
-        return RestResultGenerator.genErrorResult(ExceptionCodeEnum.INTERNAL_SERVER_ERROR.toCnString(),ExceptionCodeEnum.INTERNAL_SERVER_ERROR.name());
+        return RestResultGenerator.genErrorResult(e.getMessage(),ExceptionCodeEnum.INTERNAL_SERVER_ERROR.name());
     }
 
     

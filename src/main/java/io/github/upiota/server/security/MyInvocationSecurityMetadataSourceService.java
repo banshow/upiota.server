@@ -39,7 +39,7 @@ public class MyInvocationSecurityMetadataSourceService  implements
 //        List<Permission> permissions = permissionDao.findAll();
         for(Resource perm : perms) {
             array = new ArrayList<>();
-            cfg = new SecurityConfig(perm.getResourceKey());
+            cfg = new SecurityConfig(perm.getResourceCode());
             array.add(cfg);
             map.put(perm.getUrl(), array);
         }
