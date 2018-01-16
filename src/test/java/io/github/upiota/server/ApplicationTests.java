@@ -12,15 +12,15 @@ import io.github.upiota.server.mycoder.model.Config;
 import io.github.upiota.server.mycoder.util.DBUtil;
 import io.github.upiota.server.mycoder.util.TemplateUtil;
 import io.github.upiota.server.sys.entity.Dict;
-import io.github.upiota.server.sys.repository.DictRepository;
-import io.github.upiota.server.sys.repository.UserRepository;
+import io.github.upiota.server.sys.mapper.DictMapper;
+import io.github.upiota.server.sys.mapper.UserMapper;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ApplicationTests {
 
 	@Autowired
-	private DictRepository dictRepository;
+	private DictMapper dictRepository;
 	
 //	@Autowired
 //	private UserRepository userRepository;
@@ -36,6 +36,9 @@ public class ApplicationTests {
 		Config c = new Config();
 		c.setTableName("up_menu");
 		c.setModelName("Menu");
+		c.setGenService(true);
+		c.setGenController(true);
+		c.setSqlPackage("sys");
 		TemplateUtil.gen(c);
 		
 		

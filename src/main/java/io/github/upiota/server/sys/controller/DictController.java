@@ -12,7 +12,7 @@ import io.github.upiota.server.base.BaseController;
 import io.github.upiota.server.base.ResponseResult;
 import io.github.upiota.server.base.RestResultGenerator;
 import io.github.upiota.server.sys.entity.Dict;
-import io.github.upiota.server.sys.repository.DictRepository;
+import io.github.upiota.server.sys.mapper.DictMapper;
 
 @RestController
 @RequestMapping("dict")
@@ -22,7 +22,7 @@ public class DictController extends BaseController{
 	//private DictService dictSevice;
 	
 	@Autowired
-	private DictRepository dictRepository;
+	private DictMapper dictRepository;
 	
 	//@Autowired
     //private RequestMappingHandlerMapping handlerMapping;

@@ -1,4 +1,4 @@
-package io.github.upiota.server.sys.repository;
+package io.github.upiota.server.sys.mapper;
 
 
 import java.util.List;
@@ -9,7 +9,7 @@ import io.github.upiota.server.sys.entity.User;
 import io.github.upiota.server.util.MyMapper;
 
 
-public interface UserRepository extends MyMapper<User>{
+public interface UserMapper extends MyMapper<User>{
 	
 	@Select("select id,username,password from up_user where username = #{username}")
 	User findByUsername(String username);

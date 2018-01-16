@@ -14,8 +14,8 @@ import io.github.upiota.server.mycoder.model.CoderProperties;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ CoderProperties.class })
-@MapperScan(basePackages = { "io.github.upiota.server.repository",
-		"io.github.upiota.server.sys.repository" }, factoryBean = MyMapperFactoryBean.class)
+@MapperScan(basePackages = { "io.github.upiota.server.mapper",
+		"io.github.upiota.server.sys.mapper" }, factoryBean = MyMapperFactoryBean.class)
 // @EnableMybatisRepositories(repositoryFactoryBeanClass=CustomMybatisRepositoryFactoryBean.class,repositoryBaseClass=CustomSimpleMybatisRepository.class)
 public class Application {
 

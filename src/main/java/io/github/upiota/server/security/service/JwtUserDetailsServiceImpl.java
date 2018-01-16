@@ -10,17 +10,17 @@ import org.springframework.stereotype.Service;
 
 import io.github.upiota.server.security.JwtUserFactory;
 import io.github.upiota.server.sys.entity.User;
-import io.github.upiota.server.sys.repository.ResourceRepository;
-import io.github.upiota.server.sys.repository.UserRepository;
+import io.github.upiota.server.sys.mapper.ResourceMapper;
+import io.github.upiota.server.sys.mapper.UserMapper;
 
 
 @Service
 public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserMapper userRepository;
     @Autowired
-    private ResourceRepository resourceRepository;
+    private ResourceMapper resourceRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

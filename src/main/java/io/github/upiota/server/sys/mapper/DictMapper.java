@@ -1,9 +1,9 @@
-package io.github.upiota.server.sys.repository;
+package io.github.upiota.server.sys.mapper;
 
 import io.github.upiota.server.sys.entity.Dict;
 import io.github.upiota.server.util.MyMapper;
 
-public interface DictRepository extends MyMapper<Dict>{
+public interface DictMapper extends MyMapper<Dict>{
 //	Dict findTypeById(Long id);
 //	Dict selectTypeById(Long id);
 }

@@ -27,10 +27,10 @@ import io.github.upiota.server.sys.entity.Resource;
 import io.github.upiota.server.sys.entity.Role;
 import io.github.upiota.server.sys.entity.User;
 import io.github.upiota.server.sys.entity.UserRole;
-import io.github.upiota.server.sys.repository.ResourceRepository;
-import io.github.upiota.server.sys.repository.RoleRepository;
-import io.github.upiota.server.sys.repository.UserRepository;
-import io.github.upiota.server.sys.repository.UserRoleRepository;
+import io.github.upiota.server.sys.mapper.ResourceMapper;
+import io.github.upiota.server.sys.mapper.RoleMapper;
+import io.github.upiota.server.sys.mapper.UserMapper;
+import io.github.upiota.server.sys.mapper.UserRoleMapper;
 
 @RunWith(SpringRunner.class)
 //@WebMvcTest(controllers = UserController.class)
@@ -51,16 +51,16 @@ public class ControllerTest {
 //	}
 	
 	@Autowired
-	private ResourceRepository resourceRepository;
+	private ResourceMapper resourceRepository;
 	
 	@Autowired
-	private UserRepository userRepository;
+	private UserMapper userRepository;
 	
 	@Autowired
-	private RoleRepository roleRepository;
+	private RoleMapper roleRepository;
 	
 	@Autowired
-	private UserRoleRepository userRoleRepository;
+	private UserRoleMapper userRoleRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;

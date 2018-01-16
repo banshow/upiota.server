@@ -13,7 +13,7 @@ import io.github.upiota.server.base.BaseController;
 import io.github.upiota.server.base.ResponseResult;
 import io.github.upiota.server.base.RestResultGenerator;
 import io.github.upiota.server.sys.entity.User;
-import io.github.upiota.server.sys.repository.UserRepository;
+import io.github.upiota.server.sys.mapper.UserMapper;
 
 @RestController
 @RequestMapping("user")
@@ -21,7 +21,7 @@ import io.github.upiota.server.sys.repository.UserRepository;
 public class UserController extends BaseController {
 
 	@Autowired
-	private UserRepository userRepository;
+	private UserMapper userRepository;
 
 	@GetMapping("list")
 	// @PreAuthorize("hasAuthority('systemManager')")

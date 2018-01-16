@@ -17,14 +17,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Service;
 
 import io.github.upiota.server.sys.entity.Resource;
-import io.github.upiota.server.sys.repository.ResourceRepository;
+import io.github.upiota.server.sys.mapper.ResourceMapper;
 
 @Service
 public class MyInvocationSecurityMetadataSourceService  implements
         FilterInvocationSecurityMetadataSource {
 
     @Autowired
-    private ResourceRepository resourceRepository;
+    private ResourceMapper resourceRepository;
 
     private HashMap<String, Collection<ConfigAttribute>> map =null;
 
