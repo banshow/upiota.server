@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import io.github.upiota.server.entity.User;
+import io.github.upiota.server.sys.entity.User;
 
 public final class JwtUserFactory {
 

@@ -11,9 +11,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import io.github.upiota.server.mycoder.model.Config;
 import io.github.upiota.server.mycoder.util.DBUtil;
 import io.github.upiota.server.mycoder.util.TemplateUtil;
-import io.github.upiota.server.repository.UserRepository;
 import io.github.upiota.server.sys.entity.Dict;
 import io.github.upiota.server.sys.repository.DictRepository;
+import io.github.upiota.server.sys.repository.UserRepository;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -22,8 +22,8 @@ public class ApplicationTests {
 	@Autowired
 	private DictRepository dictRepository;
 	
-	@Autowired
-	private UserRepository userRepository;
+//	@Autowired
+//	private UserRepository userRepository;
 	
 	@Test
 	public void contextLoads() throws Exception {	
@@ -34,8 +34,8 @@ public class ApplicationTests {
 //		list.forEach(System.out::println);
 		
 		Config c = new Config();
-		c.setTableName("up_dict");
-		c.setModelName("Dict");
+		c.setTableName("up_menu");
+		c.setModelName("Menu");
 		TemplateUtil.gen(c);
 		
 		

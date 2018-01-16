@@ -23,14 +23,14 @@ import org.springframework.util.MultiValueMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.upiota.server.entity.Resource;
-import io.github.upiota.server.entity.Role;
-import io.github.upiota.server.entity.User;
-import io.github.upiota.server.entity.UserRole;
-import io.github.upiota.server.repository.ResourceRepository;
-import io.github.upiota.server.repository.RoleRepository;
-import io.github.upiota.server.repository.UserRepository;
-import io.github.upiota.server.repository.UserRoleRepository;
+import io.github.upiota.server.sys.entity.Resource;
+import io.github.upiota.server.sys.entity.Role;
+import io.github.upiota.server.sys.entity.User;
+import io.github.upiota.server.sys.entity.UserRole;
+import io.github.upiota.server.sys.repository.ResourceRepository;
+import io.github.upiota.server.sys.repository.RoleRepository;
+import io.github.upiota.server.sys.repository.UserRepository;
+import io.github.upiota.server.sys.repository.UserRoleRepository;
 
 @RunWith(SpringRunner.class)
 //@WebMvcTest(controllers = UserController.class)

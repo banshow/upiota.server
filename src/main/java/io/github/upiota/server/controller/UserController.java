@@ -12,8 +12,8 @@ import io.github.upiota.framework.annotation.AuthResourceType;
 import io.github.upiota.server.base.BaseController;
 import io.github.upiota.server.base.ResponseResult;
 import io.github.upiota.server.base.RestResultGenerator;
-import io.github.upiota.server.entity.User;
-import io.github.upiota.server.repository.UserRepository;
+import io.github.upiota.server.sys.entity.User;
+import io.github.upiota.server.sys.repository.UserRepository;
 
 @RestController
 @RequestMapping("user")

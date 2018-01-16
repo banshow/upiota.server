@@ -16,8 +16,8 @@ import org.springframework.security.web.access.intercept.FilterInvocationSecurit
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.stereotype.Service;
 
-import io.github.upiota.server.entity.Resource;
-import io.github.upiota.server.repository.ResourceRepository;
+import io.github.upiota.server.sys.entity.Resource;
+import io.github.upiota.server.sys.repository.ResourceRepository;
 
 @Service
 public class MyInvocationSecurityMetadataSourceService  implements

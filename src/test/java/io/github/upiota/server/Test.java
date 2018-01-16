@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.SelectProvider;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import io.github.upiota.server.repository.UserRepository;
+import io.github.upiota.server.sys.repository.UserRepository;
 
 public class Test {
 

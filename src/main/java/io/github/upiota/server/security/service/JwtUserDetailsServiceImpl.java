@@ -8,10 +8,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import io.github.upiota.server.entity.User;
-import io.github.upiota.server.repository.ResourceRepository;
-import io.github.upiota.server.repository.UserRepository;
 import io.github.upiota.server.security.JwtUserFactory;
+import io.github.upiota.server.sys.entity.User;
+import io.github.upiota.server.sys.repository.ResourceRepository;
+import io.github.upiota.server.sys.repository.UserRepository;
 
 
 @Service

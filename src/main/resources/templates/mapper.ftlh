@@ -5,6 +5,5 @@ import ${p};
 </#list>
 
 
-@Mapper
-public interface ${config.modelName}Mapper extends MyMapper<${config.modelName}> {
+public interface ${config.modelName}Repository extends MyMapper<${config.modelName}> {
 }

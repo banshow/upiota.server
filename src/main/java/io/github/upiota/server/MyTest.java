@@ -40,7 +40,7 @@ public class MyTest implements CommandLineRunner{
 //      }
 		
 		
-		System.out.println(LocaleContextHolder.getLocale());
+//		System.out.println(LocaleContextHolder.getLocale());
 	}
 
 }

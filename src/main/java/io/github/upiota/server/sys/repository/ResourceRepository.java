@@ -1,10 +1,10 @@
-package io.github.upiota.server.repository;
+package io.github.upiota.server.sys.repository;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 
-import io.github.upiota.server.entity.Resource;
+import io.github.upiota.server.sys.entity.Resource;
 import io.github.upiota.server.util.MyMapper;
 
 public interface ResourceRepository extends MyMapper<Resource>{

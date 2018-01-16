@@ -33,9 +33,11 @@ import org.apache.ibatis.mapping.ResultFlag;
 import org.apache.ibatis.mapping.ResultMapping;
 import org.apache.ibatis.mapping.ResultSetType;
 import org.apache.ibatis.mapping.SqlCommandType;
+import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.mapping.StatementType;
 import org.apache.ibatis.reflection.TypeParameterResolver;
 import org.apache.ibatis.scripting.LanguageDriver;
+import org.apache.ibatis.scripting.xmltags.DynamicSqlSource;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
@@ -110,8 +112,8 @@ public class MyMapperBuilder {
 		keyGenerator = NoKeyGenerator.INSTANCE;
 
 		String resultMapId = parseResultMap(method);
-
-		assistant.addMappedStatement(mappedStatementId, null, statementType, sqlCommandType, fetchSize, timeout,
+		SqlSource sqlSource = new DynamicSqlSource(configuration, null);
+		assistant.addMappedStatement(mappedStatementId, sqlSource, statementType, sqlCommandType, fetchSize, timeout,
 				// ParameterMapID
 				null, parameterTypeClass, resultMapId, getReturnType(method), resultSetType, flushCache, useCache,
 				// TODO gcode issue #577

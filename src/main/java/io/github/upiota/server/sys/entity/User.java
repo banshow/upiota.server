@@ -1,4 +1,4 @@
-package io.github.upiota.server.entity;
+package io.github.upiota.server.sys.entity;
 
 import java.util.Date;
 import java.util.List;
