@@ -1,4 +1,4 @@
-package io.github.upiota.server.controller;
+package io.github.upiota.server.sys.controller;
 
 import java.util.List;
 

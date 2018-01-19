@@ -1,4 +1,4 @@
-package io.github.upiota.server.sys.repository;
+package io.github.upiota.server.sys.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import io.github.upiota.server.sys.entity.Menu;
