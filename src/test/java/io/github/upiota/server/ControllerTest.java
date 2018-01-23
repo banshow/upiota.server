@@ -107,7 +107,25 @@ public class ControllerTest {
 	public void testUserList() throws Exception {
 		this.mockMvc.perform(
 				get("/user/list")
-				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxMjAyMTQ0MTg0MCwiZXhwIjoxNTEyNjI2MjQxfQ.pY2YeKeU83hVaRvRn1sIsV92lMtQDokGGc0KYZO2ZXvpXPWzLej376HjsAlc3N4sG3ldXoxhKPsfEgcCv4c21w")
+				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNjYwMjY1NjU5NywiZXhwIjoxNTE3MjA3NDU2fQ.kXYgYPFBKL4jKD_8zdsRtebkxMTpVC5YGZ3VhF83ieOYEQwhAzmGmJVwyC844cBSQL1cLWb38EsPlx9Gm3-hKw")
+				)
+		.andExpect(status().isOk()).andDo(print());
+	}
+	
+	@Test
+	public void testMenuTree() throws Exception {
+		this.mockMvc.perform(
+				get("/menu/tree4User")
+				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNjYwMjY1NjU5NywiZXhwIjoxNTE3MjA3NDU2fQ.kXYgYPFBKL4jKD_8zdsRtebkxMTpVC5YGZ3VhF83ieOYEQwhAzmGmJVwyC844cBSQL1cLWb38EsPlx9Gm3-hKw")
+				)
+		.andExpect(status().isOk()).andDo(print());
+	}
+	
+	@Test
+	public void testCurrentInfo() throws Exception {
+		this.mockMvc.perform(
+				get("/user/currentInfo")
+				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNjYwMjY1NjU5NywiZXhwIjoxNTE3MjA3NDU2fQ.kXYgYPFBKL4jKD_8zdsRtebkxMTpVC5YGZ3VhF83ieOYEQwhAzmGmJVwyC844cBSQL1cLWb38EsPlx9Gm3-hKw")
 				)
 		.andExpect(status().isOk()).andDo(print());
 	}

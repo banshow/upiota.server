@@ -1,6 +1,5 @@
 package io.github.upiota.server.sys.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
 import io.github.upiota.server.sys.entity.Menu;
 import io.github.upiota.server.util.MyMapper;
 

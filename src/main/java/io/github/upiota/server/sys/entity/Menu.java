@@ -1,9 +1,14 @@
 package io.github.upiota.server.sys.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.lang.Long;
+import java.util.List;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "up_menu")
 public class Menu {
 
@@ -17,12 +22,14 @@ public class Menu {
      private Long parentId;
      
      //菜单标识
-     @Column(name = "key")
-     private String key;
+     @Column(name = "menu_key")
+     @JsonProperty("key")
+     private String menuKey;
      
      //菜单名称
-     @Column(name = "name")
-     private String name;
+     @Column(name = "menu_name")
+     @JsonProperty("name")
+     private String menuName;
      
      //菜单图标
      @Column(name = "icon")
@@ -36,6 +43,8 @@ public class Menu {
      @Column(name = "target")
      private String target;
      
+     @Transient
+     private List<Menu> children;
      
      public Long getId() {
         return id;
@@ -53,23 +62,25 @@ public class Menu {
         this.parentId = parentId;
      }
      
-     public String getKey() {
-        return key;
-     }
-
-     public void setKey(String key) {
-        this.key = key;
-     }
+    
      
-     public String getName() {
-        return name;
-     }
+     public String getMenuKey() {
+		return menuKey;
+	}
 
-     public void setName(String name) {
-        this.name = name;
-     }
-     
-     public String getIcon() {
+	public void setMenuKey(String menuKey) {
+		this.menuKey = menuKey;
+	}
+
+	public String getMenuName() {
+		return menuName;
+	}
+
+	public void setMenuName(String menuName) {
+		this.menuName = menuName;
+	}
+
+	public String getIcon() {
         return icon;
      }
 
@@ -92,6 +103,14 @@ public class Menu {
      public void setTarget(String target) {
         this.target = target;
      }
+
+	public List<Menu> getChildren() {
+		return children;
+	}
+
+	public void setChildren(List<Menu> children) {
+		this.children = children;
+	}
      
      
 }

@@ -4,8 +4,8 @@
   <resultMap id="BaseResultMap" type="io.github.upiota.server.sys.entity.Menu">
   	  <id column="id" jdbcType="BIGINT" property="id" />     
   	  <result column="parent_id" jdbcType="BIGINT" property="parentId" />     
-  	  <result column="key" jdbcType="VARCHAR" property="key" />     
-  	  <result column="name" jdbcType="VARCHAR" property="name" />     
+  	  <result column="menu_key" jdbcType="VARCHAR" property="menuKey" />     
+  	  <result column="menu_name" jdbcType="VARCHAR" property="menuName" />     
   	  <result column="icon" jdbcType="VARCHAR" property="icon" />     
   	  <result column="path" jdbcType="VARCHAR" property="path" />     
   	  <result column="target" jdbcType="VARCHAR" property="target" />     

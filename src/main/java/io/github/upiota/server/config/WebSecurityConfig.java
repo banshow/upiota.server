@@ -15,6 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsUtils;
 
 import io.github.upiota.server.security.JwtAuthenticationEntryPoint;
 import io.github.upiota.server.security.JwtAuthenticationTokenFilter;
@@ -23,70 +24,60 @@ import io.github.upiota.server.security.MyFilterSecurityInterceptor;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+// @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private JwtAuthenticationEntryPoint unauthorizedHandler;
-    
-    @Autowired
-    private MyAccessDeniedHandler accessDeniedHandler;
-    
-    @Autowired
-    private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+	@Autowired
+	private JwtAuthenticationEntryPoint unauthorizedHandler;
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+	@Autowired
+	private MyAccessDeniedHandler accessDeniedHandler;
 
-    @Autowired
-    public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-        authenticationManagerBuilder
-                .userDetailsService(this.userDetailsService)
-                .passwordEncoder(passwordEncoder());
-    }
+	@Autowired
+	private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Autowired
+	private UserDetailsService userDetailsService;
 
-    @Bean
-    public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-        return new JwtAuthenticationTokenFilter();
-    }
+	@Autowired
+	public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
+		authenticationManagerBuilder.userDetailsService(this.userDetailsService).passwordEncoder(passwordEncoder());
+	}
 
-    @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity
-                // we don't need CSRF because our token is invulnerable
-                .csrf().disable()
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-                .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).accessDeniedHandler(accessDeniedHandler).and()
+	@Bean
+	public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+		return new JwtAuthenticationTokenFilter();
+	}
 
-                // don't create session
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+	@Override
+	protected void configure(HttpSecurity httpSecurity) throws Exception {
+		httpSecurity
 
-                .authorizeRequests()
+				// we don't need CSRF because our token is invulnerable
+				.csrf().disable()
+				// don't create session
+				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
-                // allow anonymous resource requests
-                .antMatchers(
-                        HttpMethod.GET,
-                        "/",
-                        "/*.html",
-                        "/favicon.ico",
-                        "/**/*.html",
-                        "/**/*.css",
-                        "/**/*.js"
-                ).permitAll()
-                .antMatchers("/auth/**").permitAll()
-                .anyRequest().authenticated();
+				.authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
-        // Custom JWT based security filter
-        httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
-        
-        httpSecurity.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+				// allow anonymous resource requests
+				.antMatchers(
+						// HttpMethod.GET,
+						"/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js")
+				.permitAll().antMatchers("/auth/**").permitAll().anyRequest().authenticated();
 
-        // disable page caching
-        httpSecurity.headers().cacheControl();
-    }
+		// Custom JWT based security filter
+		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+
+		httpSecurity.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
+		httpSecurity.exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+				.accessDeniedHandler(accessDeniedHandler);
+		// disable page caching
+		httpSecurity.headers().cacheControl();
+	}
 }
