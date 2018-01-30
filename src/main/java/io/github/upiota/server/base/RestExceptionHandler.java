@@ -38,9 +38,10 @@ public class RestExceptionHandler {
 
     
     @ExceptionHandler(value=AccessDeniedException.class)
+    @ResponseBody
     public ResponseResult handleAccessDeniedException(Exception e) {
     	   logger.error("--------->接口调用异常!", e);
-           return RestResultGenerator.genErrorResult(ExceptionCodeEnum.INTERNAL_SERVER_ERROR.toCnString(),ExceptionCodeEnum.INTERNAL_SERVER_ERROR.name());
+           return RestResultGenerator.genErrorResult(ExceptionCodeEnum.AUTH.toCnString(),ExceptionCodeEnum.AUTH.name());
     }
     
     /**
