@@ -28,7 +28,7 @@ public class MenuController{
 	@GetMapping("tree4User")
 	// @PreAuthorize("hasAuthority('systemManager')")
 	// @PreAuthorize("hasRole('systemManager')")
-	@AuthResource(code = "menu_tree4User", name = "用户菜单树")
+	//@AuthResource(code = "menu_tree4User", name = "用户菜单树")
 	public ResponseResult list() {
 		List<Menu> list = menuService.tree4User();
 		return RestResultGenerator.genResult("成功!").putData("list", list);

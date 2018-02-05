@@ -3,12 +3,15 @@ package io.github.upiota.server.sys.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.github.upiota.framework.annotation.AuthResource;
 import io.github.upiota.framework.annotation.AuthResourceType;
+import io.github.upiota.framework.annotation.Authority;
 import io.github.upiota.server.base.BaseController;
 import io.github.upiota.server.base.ResponseResult;
 import io.github.upiota.server.base.RestResultGenerator;
@@ -19,7 +22,6 @@ import io.github.upiota.server.sys.service.MenuService;
 
 @RestController
 @RequestMapping("user")
-@AuthResource(code = "user_manager", name = "用户管理", type = AuthResourceType.MOUDLE)
 public class UserController extends BaseController {
 
 	@Autowired
@@ -31,7 +33,7 @@ public class UserController extends BaseController {
 	@GetMapping("list")
 	// @PreAuthorize("hasAuthority('systemManager')")
 	// @PreAuthorize("hasRole('systemManager')")
-	@AuthResource(code = "user_list", name = "用户列表查询")
+	@AuthResource(name = "用户列表查询",authority = Authority.user_currentInfo)
 	public ResponseResult list() {
 		// Long userId = getCurrentUserId();
 		List<User> list = userRepository.selectAll();
@@ -39,7 +41,9 @@ public class UserController extends BaseController {
 	}
 
 	@GetMapping("currentInfo")
-	@AuthResource(code = "current_info", name = "当前用户信息查询")
+	@AuthResource(authority = Authority.user_currentInfo, name = "当前用户信息查询")
+	//@Secured("user:currentInfo")
+	//@PreAuthorize("hasAuthority('user:currentInfo')")
 	public ResponseResult currentInfo() {
 		List<Menu> list = menuService.tree4User();
 		return RestResultGenerator.genResult("成功!")

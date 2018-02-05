@@ -12,6 +12,6 @@ import java.lang.annotation.Target;
 public @interface AuthResource {
 	String name();
 	AuthResourceType type() default AuthResourceType.URL;
-	String code();
+	Authority authority();
 	String parentCode() default "";
 }

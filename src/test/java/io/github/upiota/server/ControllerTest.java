@@ -125,7 +125,7 @@ public class ControllerTest {
 	public void testCurrentInfo() throws Exception {
 		this.mockMvc.perform(
 				get("/user/currentInfo")
-				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNjYwMjY1NjU5NywiZXhwIjoxNTE3MjA3NDU2fQ.kXYgYPFBKL4jKD_8zdsRtebkxMTpVC5YGZ3VhF83ieOYEQwhAzmGmJVwyC844cBSQL1cLWb38EsPlx9Gm3-hKw")
+				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNzgxMzUzNDU5MiwiZXhwIjoxNTE4NDE4MzM0fQ.68cwVKxXfTcFJVasmuInf5d4VyoPnilSK3EWsS1K4dtxGjQdgOwRAbWy-d_97j_2Y8l46j-mqPe9iKRQvVaHgQ")
 				)
 		.andExpect(status().isOk()).andDo(print());
 	}
