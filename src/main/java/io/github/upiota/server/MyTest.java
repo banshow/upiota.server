@@ -1,9 +1,11 @@
 package io.github.upiota.server;
 
 import java.lang.reflect.Method;
+import java.util.Collection;
 import java.util.Map;
 
 import org.apache.coyote.http2.Stream;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,6 +19,7 @@ import org.springframework.util.ClassUtils;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import io.github.upiota.framework.annotation.ApiResource;
+import io.github.upiota.server.util.AopTargetUtils;
 import javassist.ClassPool;
 import javassist.CtClass;
 import javassist.CtMethod;
@@ -104,17 +107,26 @@ public class MyTest implements CommandLineRunner,EnvironmentAware,ApplicationCon
 
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		Map<String, Object> cls = applicationContext.getBeansWithAnnotation(Controller.class);
-		System.out.println(cls);
-		cls.values().forEach(b->{
-			Class<? extends Object> c = b.getClass();
-			
-			Method[] ms = c.getMethods();
-			
-			for(Method m : ms) {
-				System.out.println(m.getName());
-				System.out.println(m.getDeclaredAnnotations());
-			}
-		});
+//		Map<String, Object> cls = applicationContext.getBeansWithAnnotation(Controller.class);
+//		cls.values().forEach(b->{
+//			try {
+//				b = AopTargetUtils.getTarget(b);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			Class<?> c = b.getClass();
+//			try {
+//				c = Class.forName(c.getName());
+//			} catch (ClassNotFoundException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			Method[] ms = c.getDeclaredMethods();
+//			
+//			for(Method m : ms) {
+//				System.out.println(m.getName());
+//				System.out.println(m.getDeclaredAnnotations());
+//			}
+//		});
 	}
 }

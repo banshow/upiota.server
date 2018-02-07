@@ -33,10 +33,11 @@ public class UserController extends BaseController {
 	@Autowired
 	private MenuService menuService;
 
-	@GetMapping("list")
+	//@GetMapping("list")
 	// @PreAuthorize("hasAuthority('systemManager')")
 	// @PreAuthorize("hasRole('systemManager')")
-	@ApiResource(name = "用户列表查询",authority = Authority.user_currentInfo)
+	@ApiResource(path = "list",name = "用户列表查询",authority = Authority.user_currentInfo)
+	//@ApiOperation("aaa")
 	public ResponseResult list() {
 		// Long userId = getCurrentUserId();
 		List<User> list = userRepository.selectAll();
@@ -52,6 +53,7 @@ public class UserController extends BaseController {
 	//@ApiOperation(value = "aaaa")
 	//@Secured("user:currentInfo")
 	//@PreAuthorize("hasAuthority('user:currentInfo')")
+	//@ApiOperation("bbb")
 	public ResponseResult currentInfo() {
 		List<Menu> list = menuService.tree4User();
 		return RestResultGenerator.genResult("成功!")
