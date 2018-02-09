@@ -2,6 +2,7 @@ package io.github.upiota.server;
 
 import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.coyote.http2.Stream;
@@ -16,6 +17,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.ClassUtils;
+import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import io.github.upiota.framework.annotation.ApiResource;
@@ -40,6 +42,9 @@ public class MyTest implements CommandLineRunner,EnvironmentAware,ApplicationCon
 
 	@Autowired
 	private RequestMappingHandlerMapping handlerMapping;
+	
+	@Autowired
+	List<RequestMappingInfoHandlerMapping> handlerMappings;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -57,7 +62,9 @@ public class MyTest implements CommandLineRunner,EnvironmentAware,ApplicationCon
 //          Map.Entry<?, HandlerMethod> entry = (Map.Entry<?, HandlerMethod>) iterator.next();
 //          System.out.println(entry.getKey() +"\n" + entry.getValue());
 //      }
-		
+//		handlerMappings.forEach((s)->{
+//			System.out.println(s);
+//		});
 		
 //		System.out.println(LocaleContextHolder.getLocale());
 		

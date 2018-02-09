@@ -10,6 +10,7 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ClassUtils;
 import org.springframework.util.ReflectionUtils;
 
 import io.github.upiota.framework.annotation.ApiResource;
@@ -26,14 +27,14 @@ import javassist.bytecode.ConstPool;
 import javassist.bytecode.annotation.Annotation;
 import javassist.bytecode.annotation.StringMemberValue;
 
-@Component
+//@Component
 public class MyListenerProcessor implements BeanPostProcessor{
     @Override
     public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
     	Class<? extends Object> c = bean.getClass();
         Method[] methods = ReflectionUtils.getAllDeclaredMethods(bean.getClass());
         ClassPool pool = ClassPool.getDefault();
-		Loader cl = new Loader(); //javassist.Loader
+		Loader cl = new Loader(pool); //javassist.Loader
         //extracting the class
         CtClass cc = null;
         Object newBean = null;
@@ -61,9 +62,9 @@ public class MyListenerProcessor implements BeanPostProcessor{
                     sayHelloMethodDescriptor.getMethodInfo().addAttribute(attr);
                      
                     Class dynamiqueBeanClass;
-        			dynamiqueBeanClass = cc.toClass(cl);
+        			dynamiqueBeanClass = cc.toClass(ClassUtils.getDefaultClassLoader());
         				 //instanciating the updated class 
-        			newBean = dynamiqueBeanClass.newInstance();
+        			newBean = cl.loadClass(c.getName()).newInstance();
                   
             		
             	}
