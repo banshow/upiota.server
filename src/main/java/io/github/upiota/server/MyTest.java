@@ -1,12 +1,7 @@
 package io.github.upiota.server;
 
-import java.lang.reflect.Method;
-import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
-import org.apache.coyote.http2.Stream;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,21 +10,9 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.util.ClassUtils;
 import org.springframework.web.servlet.mvc.method.RequestMappingInfoHandlerMapping;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
-import io.github.upiota.framework.annotation.ApiResource;
-import io.github.upiota.server.util.AopTargetUtils;
-import javassist.ClassPool;
-import javassist.CtClass;
-import javassist.CtMethod;
-import javassist.bytecode.AnnotationsAttribute;
-import javassist.bytecode.ConstPool;
-import javassist.bytecode.MethodInfo;
-import javassist.bytecode.annotation.Annotation;
-import javassist.bytecode.annotation.LongMemberValue;
 
 @Component
 public class MyTest implements CommandLineRunner,EnvironmentAware,ApplicationContextAware {

@@ -18,7 +18,6 @@ import org.springframework.web.cors.CorsUtils;
 import io.github.upiota.server.security.JwtAuthenticationEntryPoint;
 import io.github.upiota.server.security.JwtAuthenticationTokenFilter;
 import io.github.upiota.server.security.MyAccessDeniedHandler;
-import io.github.upiota.server.security.MyFilterSecurityInterceptor;
 
 @Configuration
 @EnableWebSecurity
@@ -30,8 +29,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private MyAccessDeniedHandler accessDeniedHandler;
 
-	@Autowired
-	private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+//	@Autowired
+//	private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
 	@Autowired
 	private UserDetailsService userDetailsService;

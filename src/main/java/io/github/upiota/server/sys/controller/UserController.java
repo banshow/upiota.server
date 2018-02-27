@@ -30,7 +30,7 @@ public class UserController extends BaseController {
 	//@GetMapping("list")
 	// @PreAuthorize("hasAuthority('systemManager')")
 	// @PreAuthorize("hasRole('systemManager')")
-	@ApiResource(path = "list",name = "用户列表查询",authority = Authority.user_currentInfo)
+	@ApiResource(path = "list",name = "用户列表查询",authority = Authority.login_user_read)
 	public ResponseResult list() {
 		// Long userId = getCurrentUserId();
 		List<User> list = userRepository.selectAll();
@@ -40,7 +40,7 @@ public class UserController extends BaseController {
 	@ApiResource(
 			name = "当前用户信息查询",
 			path = "currentInfo",
-			authority = Authority.user_currentInfo,
+			authority = Authority.login_user_read,
 			method = RequestMethod.GET
 			)
 	//@ApiOperation(value = "aaaa")

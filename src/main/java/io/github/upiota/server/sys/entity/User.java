@@ -30,7 +30,7 @@ public class User{
 //	inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
 	
 	@Transient
-	private List<String> resources;
+	private List<String> authoritys;
 
 	
 	public String getUsername() {
@@ -66,14 +66,14 @@ public class User{
 
 
 
-	public List<String> getResources() {
-		return resources;
+	public List<String> getAuthoritys() {
+		return authoritys;
 	}
 
 
 
-	public void setResources(List<String> resources) {
-		this.resources = resources;
+	public void setAuthoritys(List<String> authoritys) {
+		this.authoritys = authoritys;
 	}
 
 

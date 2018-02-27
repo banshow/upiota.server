@@ -82,7 +82,7 @@ public class ControllerTest {
 		
 //		Role r = roleRepository.findOne(1l);
 //		User u = userRepository.findOne(1l);
-		List<String> list = resourceRepository.listResourceByUserId(1l);
+//		List<String> list = resourceRepository.listResourceByUserId(1l);
 		
 		System.out.println(userRepository.selectUsernameByUsername("admin"));
 		
@@ -125,7 +125,7 @@ public class ControllerTest {
 	public void testCurrentInfo() throws Exception {
 		this.mockMvc.perform(
 				get("/user/currentInfo")
-				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNzgxMzUzNDU5MiwiZXhwIjoxNTE4NDE4MzM0fQ.68cwVKxXfTcFJVasmuInf5d4VyoPnilSK3EWsS1K4dtxGjQdgOwRAbWy-d_97j_2Y8l46j-mqPe9iKRQvVaHgQ")
+				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxOTYzMzgyNjQyOSwiZXhwIjoxNTIwMjM4NjI2fQ.OUwJlL303e27i0D6coE1F1rL97RnOh2ttT2p1MD1XoAJ3MaMtHFpkcm-57wV-_Qgh1gHnUxzJHCMOjbSXqaDoA")
 				)
 		.andExpect(status().isOk()).andDo(print());
 	}

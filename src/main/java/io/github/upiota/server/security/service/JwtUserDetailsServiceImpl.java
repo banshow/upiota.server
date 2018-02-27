@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import io.github.upiota.server.security.JwtUserFactory;
 import io.github.upiota.server.sys.entity.User;
+import io.github.upiota.server.sys.mapper.AuthorityMapper;
 import io.github.upiota.server.sys.mapper.ResourceMapper;
 import io.github.upiota.server.sys.mapper.UserMapper;
 
@@ -21,6 +22,8 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
     private UserMapper userRepository;
     @Autowired
     private ResourceMapper resourceRepository;
+    @Autowired
+    private AuthorityMapper authorityMapper;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -29,8 +32,8 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s'.", username));
         } else {
-        	List<String> resources = resourceRepository.listResourceByUserId(user.getId());
-        	user.setResources(resources);
+        	List<String> authoritys = authorityMapper.listAuthorityByUserId(user.getId());
+        	user.setAuthoritys(authoritys);
             return JwtUserFactory.create(user);
         }
     }

@@ -29,7 +29,6 @@ public class Test {
 //            }
 //        }
 		
-		System.out.println(Authority.user_currentInfo.name());
 	}
 
 }
