@@ -1,118 +1,20 @@
-/*
- Navicat Premium Data Transfer
-
- Source Server         : localhost_3306
- Source Server Type    : MySQL
- Source Server Version : 50720
- Source Host           : localhost:3306
- Source Schema         : test
-
- Target Server Type    : MySQL
- Target Server Version : 50720
- File Encoding         : 65001
-
- Date: 05/02/2018 17:27:59
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for student
+-- Table structure for up_authority
 -- ----------------------------
-DROP TABLE IF EXISTS `student`;
-CREATE TABLE `student`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'ID',
-  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '姓名',
-  `score_sum` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '总成绩',
-  `score_avg` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '平均成绩',
-  `age` int(11) NULL DEFAULT NULL COMMENT '1男0女',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+DROP TABLE IF EXISTS `up_authority`;
+CREATE TABLE `up_authority`  (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `authority_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限码',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `authority_code`(`authority_code`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of student
+-- Records of up_authority
 -- ----------------------------
-INSERT INTO `student` VALUES (1, '小明', '355', '84', 1);
-INSERT INTO `student` VALUES (2, '小王', '187', '62.3', 1);
-INSERT INTO `student` VALUES (4, '柱子', '230', '76.7', 1);
-INSERT INTO `student` VALUES (5, '大毛', '', '', 0);
-INSERT INTO `student` VALUES (6, '亮子', '0', '0', 1);
-INSERT INTO `student` VALUES (18, '莉莉', '288.5', '88.5', 20);
-
--- ----------------------------
--- Table structure for t_permission
--- ----------------------------
-DROP TABLE IF EXISTS `t_permission`;
-CREATE TABLE `t_permission`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `permission_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `role_id` int(11) NULL DEFAULT NULL,
-  INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of t_permission
--- ----------------------------
-INSERT INTO `t_permission` VALUES (1, 'add', 2);
-INSERT INTO `t_permission` VALUES (2, 'del', 1);
-INSERT INTO `t_permission` VALUES (3, 'update', 2);
-INSERT INTO `t_permission` VALUES (4, 'query', 3);
-INSERT INTO `t_permission` VALUES (5, 'user:query', 1);
-INSERT INTO `t_permission` VALUES (6, 'user:edit', 2);
-
--- ----------------------------
--- Table structure for t_role
--- ----------------------------
-DROP TABLE IF EXISTS `t_role`;
-CREATE TABLE `t_role`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `role_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  INDEX `id`(`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of t_role
--- ----------------------------
-INSERT INTO `t_role` VALUES (1, 'admin');
-INSERT INTO `t_role` VALUES (2, 'manager');
-INSERT INTO `t_role` VALUES (3, 'normal');
-
--- ----------------------------
--- Table structure for t_user
--- ----------------------------
-DROP TABLE IF EXISTS `t_user`;
-CREATE TABLE `t_user`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `password` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of t_user
--- ----------------------------
-INSERT INTO `t_user` VALUES (1, 'tom', '123456');
-INSERT INTO `t_user` VALUES (2, 'jack', '123456');
-INSERT INTO `t_user` VALUES (3, 'rose', '123456');
-
--- ----------------------------
--- Table structure for t_user_role
--- ----------------------------
-DROP TABLE IF EXISTS `t_user_role`;
-CREATE TABLE `t_user_role`  (
-  `user_id` int(11) NULL DEFAULT NULL,
-  `role_id` int(11) NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of t_user_role
--- ----------------------------
-INSERT INTO `t_user_role` VALUES (1, 1);
-INSERT INTO `t_user_role` VALUES (1, 3);
-INSERT INTO `t_user_role` VALUES (2, 2);
-INSERT INTO `t_user_role` VALUES (2, 3);
-INSERT INTO `t_user_role` VALUES (3, 3);
+INSERT INTO `up_authority` VALUES (1, 'login_user_read');
+INSERT INTO `up_authority` VALUES (2, 'user_list_read');
 
 -- ----------------------------
 -- Table structure for up_dict
@@ -193,7 +95,7 @@ INSERT INTO `up_resource` VALUES (3, 0, 'URL', '用户列表查询', 'user:list'
 -- ----------------------------
 DROP TABLE IF EXISTS `up_role`;
 CREATE TABLE `up_role`  (
-  `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '角色标识,主键',
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '角色标识,主键',
   `role_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名',
   `role_desc` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色描述',
   PRIMARY KEY (`id`) USING BTREE,
@@ -205,6 +107,27 @@ CREATE TABLE `up_role`  (
 -- ----------------------------
 INSERT INTO `up_role` VALUES (1, 'admin', '管理员');
 INSERT INTO `up_role` VALUES (2, 'user', '普通用户');
+
+-- ----------------------------
+-- Table structure for up_role_authority
+-- ----------------------------
+DROP TABLE IF EXISTS `up_role_authority`;
+CREATE TABLE `up_role_authority`  (
+  `role_id` bigint(20) NOT NULL,
+  `authority_id` bigint(20) NOT NULL,
+  PRIMARY KEY (`authority_id`, `role_id`) USING BTREE,
+  UNIQUE INDEX `idx_role_id_authority_id`(`role_id`, `authority_id`) USING BTREE,
+  CONSTRAINT `up_role_authority_ibfk_1` FOREIGN KEY (`authority_id`) REFERENCES `up_authority` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `up_role_authority_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `up_role` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of up_role_authority
+-- ----------------------------
+INSERT INTO `up_role_authority` VALUES (1, 1);
+INSERT INTO `up_role_authority` VALUES (2, 1);
+INSERT INTO `up_role_authority` VALUES (1, 2);
+INSERT INTO `up_role_authority` VALUES (2, 2);
 
 -- ----------------------------
 -- Table structure for up_role_resource
@@ -233,7 +156,7 @@ CREATE TABLE `up_user`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户标识,主键',
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户登录名',
   `password` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户登录密码',
-  `create_at` datetime(0) NOT NULL COMMENT '创建时间',
+  `create_at` datetime NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uidx_username`(`username`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
