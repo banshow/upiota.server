@@ -1,22 +1,20 @@
 package io.github.upiota.server.sys.entity;
 
-import javax.persistence.*;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.lang.Long;
-import java.util.List;
+import io.github.upiota.server.base.BaseEntity;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Table(name = "up_menu")
-public class Menu {
+public class Menu  extends BaseEntity{
 
-     //主键
-     @Id
-     @Column(name = "id")
-     private Long id;
-     
      //父id
      @Column(name = "parent_id")
      private Long parentId;
@@ -45,14 +43,6 @@ public class Menu {
      
      @Transient
      private List<Menu> children;
-     
-     public Long getId() {
-        return id;
-     }
-
-     public void setId(Long id) {
-        this.id = id;
-     }
      
      public Long getParentId() {
         return parentId;

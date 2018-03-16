@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import io.github.upiota.server.security.JwtUserFactory;
 import io.github.upiota.server.sys.entity.User;
 import io.github.upiota.server.sys.mapper.AuthorityMapper;
-import io.github.upiota.server.sys.mapper.ResourceMapper;
 import io.github.upiota.server.sys.mapper.UserMapper;
 
 
@@ -20,8 +19,6 @@ public class JwtUserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserMapper userRepository;
-    @Autowired
-    private ResourceMapper resourceRepository;
     @Autowired
     private AuthorityMapper authorityMapper;
 

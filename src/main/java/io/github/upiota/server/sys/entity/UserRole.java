@@ -1,15 +1,13 @@
 package io.github.upiota.server.sys.entity;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table(name = "up_user_role")
-public class UserRole{
+import io.github.upiota.server.base.BaseEntity;
 
-	@Id
-	private Long id;
-	
+@Table(name = "up_user_role")
+public class UserRole extends BaseEntity{
+
 	@Column(name = "user_id")
 	private Long userId;
 
@@ -30,14 +28,6 @@ public class UserRole{
 
 	public void setRoleId(Long roleId) {
 		this.roleId = roleId;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 }

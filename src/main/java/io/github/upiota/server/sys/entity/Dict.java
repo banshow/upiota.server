@@ -1,13 +1,13 @@
 package io.github.upiota.server.sys.entity;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.github.upiota.server.base.BaseEntity;
+
 @Table(name = "up_dict")
-public class Dict{
-	@Id
-	private Long id;
+public class Dict extends BaseEntity{
+	
 	private String value;
 	private String label;
 	private String type;
@@ -55,14 +55,5 @@ public class Dict{
 	public void setSort(Integer sort) {
 		this.sort = sort;
 	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 
 }

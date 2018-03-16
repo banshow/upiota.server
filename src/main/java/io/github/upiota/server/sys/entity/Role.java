@@ -2,16 +2,14 @@ package io.github.upiota.server.sys.entity;
 
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
+
+import io.github.upiota.server.base.BaseEntity;
 
 
 @Table(name = "up_role")
-public class Role {
+public class Role  extends BaseEntity{
 	
-	@Id
-	private Long id;
-
 	@Column(name = "role_name")
 	private String roleName;
 	
@@ -48,13 +46,5 @@ public class Role {
 //	public void setResources(List<Resource> resources) {
 //		this.resources = resources;
 //	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 }

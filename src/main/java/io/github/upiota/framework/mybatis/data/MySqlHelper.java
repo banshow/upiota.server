@@ -11,7 +11,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.repository.query.Parameters;
 import org.springframework.data.repository.query.parser.Part;
 import org.springframework.data.repository.query.parser.Part.IgnoreCaseType;

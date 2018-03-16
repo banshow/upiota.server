@@ -2,8 +2,6 @@ package io.github.upiota.framework.mybatis.data;
 
 import java.lang.reflect.Method;
 
-import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.session.Configuration;
 
 import tk.mybatis.mapper.mapperhelper.MapperHelper;

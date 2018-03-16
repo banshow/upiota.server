@@ -24,11 +24,9 @@ import org.springframework.util.MultiValueMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.upiota.server.sys.entity.Resource;
 import io.github.upiota.server.sys.entity.Role;
 import io.github.upiota.server.sys.entity.User;
 import io.github.upiota.server.sys.entity.UserRole;
-import io.github.upiota.server.sys.mapper.ResourceMapper;
 import io.github.upiota.server.sys.mapper.RoleMapper;
 import io.github.upiota.server.sys.mapper.UserMapper;
 import io.github.upiota.server.sys.mapper.UserRoleMapper;
@@ -50,9 +48,6 @@ public class ControllerTest {
 //	public void setUp() {
 //		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 //	}
-	
-	@Autowired
-	private ResourceMapper resourceRepository;
 	
 	@Autowired
 	private UserMapper userRepository;

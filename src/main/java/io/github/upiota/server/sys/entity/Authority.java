@@ -1,22 +1,16 @@
 package io.github.upiota.server.sys.entity;
 
 import javax.persistence.Column;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
+import io.github.upiota.server.base.BaseEntity;
+
 @Table(name = "up_authority")
-public class Authority {
-	@Id
-	private Long id;
+public class Authority extends BaseEntity{
+	
 	@Column(name = "authority_code")
 	private String authorityCode;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getAuthorityCode() {
 		return authorityCode;
 	}
