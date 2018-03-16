@@ -31,7 +31,7 @@ public class MyPageRequest implements Pageable{
 	}
 
 	@Override
-	public int getOffset() {
+	public long getOffset() {
 		return 0;
 	}
 

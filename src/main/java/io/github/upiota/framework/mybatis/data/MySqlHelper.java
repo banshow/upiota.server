@@ -8,6 +8,7 @@ import static org.springframework.data.repository.query.parser.Part.Type.NOT_LIK
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
@@ -115,11 +116,11 @@ public class MySqlHelper extends SqlHelper {
 	}
 	
 	private static String resolveParameterName(int position,Parameters<?,?> parameters) {
-		String paramName = null;
+		Optional<String> paramName = Optional.empty();
 		if (parameters.hasParameterAt(position)) {
 			paramName = parameters.getParameter(position).getName();
 		}
-		return StringUtils.isNotEmpty(paramName) ? paramName : "p" + position;
+		return paramName.orElse("p" + position);
 	}
 	private static String buildConditionCaluse(Type type, IgnoreCaseType ignoreCaseType, String[] properties) {
         StringBuilder builder = new StringBuilder();

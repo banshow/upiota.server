@@ -3,6 +3,8 @@ package io.github.upiota.server.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -29,11 +31,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private MyAccessDeniedHandler accessDeniedHandler;
 
-//	@Autowired
-//	private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
+	// @Autowired
+	// private MyFilterSecurityInterceptor myFilterSecurityInterceptor;
 
 	@Autowired
 	private UserDetailsService userDetailsService;
+
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
 	@Autowired
 	public void configureAuthentication(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
@@ -49,17 +57,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
 		return new JwtAuthenticationTokenFilter();
 	}
-	
-	
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers(
-				"/swagger-resources/**",
-				"/webjars/**",
-				"/v2/api-docs",
-				"/swagger-ui.html",
-				"/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js");
+		web.ignoring().antMatchers("/swagger-resources/**", "/webjars/**", "/v2/api-docs", "/swagger-ui.html", "/",
+				"/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js");
 	}
 
 	@Override
@@ -74,16 +76,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
 
 				// allow anonymous resource requests
-				//.antMatchers(
-						// HttpMethod.GET,
-				//		"/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
+				// .antMatchers(
+				// HttpMethod.GET,
+				// "/", "/*.html", "/favicon.ico", "/**/*.html", "/**/*.css",
+				// "/**/*.js").permitAll()
 				.antMatchers("/auth/**").permitAll().anyRequest().authenticated();
 
 		// Custom JWT based security filter
 		httpSecurity.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
-		//httpSecurity.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
-		httpSecurity.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).accessDeniedHandler(accessDeniedHandler);
+		// httpSecurity.addFilterBefore(myFilterSecurityInterceptor,
+		// FilterSecurityInterceptor.class);
+		httpSecurity.exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+				.accessDeniedHandler(accessDeniedHandler);
 		// disable page caching
 		httpSecurity.headers().cacheControl();
 	}

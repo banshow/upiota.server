@@ -2,6 +2,7 @@ package io.github.upiota.server;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ import io.github.upiota.server.mycoder.util.DBUtil;
 import io.github.upiota.server.mycoder.util.TemplateUtil;
 import io.github.upiota.server.sys.entity.Dict;
 import io.github.upiota.server.sys.entity.Menu;
+import io.github.upiota.server.sys.entity.User;
 import io.github.upiota.server.sys.mapper.DictMapper;
 import io.github.upiota.server.sys.mapper.MenuMapper;
 import io.github.upiota.server.sys.mapper.UserMapper;
@@ -32,8 +34,8 @@ public class ApplicationTests {
 	@Autowired
 	private DictMapper dictRepository;
 	
-//	@Autowired
-//	private UserRepository userRepository;
+	@Autowired
+	private UserMapper userMapper;
 	
 	@Autowired
 	private MenuMapper menuMapper;
@@ -50,6 +52,16 @@ public class ApplicationTests {
 			recursive(l,map);
 			
 		}
+	}
+	
+	@Test
+	public void userTest() {
+		User u = new User();
+		u.setUsername("aaaa");
+		u.setPassword("aaa");
+		u.setGmtCreate(new Date());
+		userMapper.insertSelective(u);
+		//System.out.println(userMapper.selectUsernameByUsername("admin"));
 	}
 	
 	@Test

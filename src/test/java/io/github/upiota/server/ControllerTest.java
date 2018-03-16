@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -107,7 +108,7 @@ public class ControllerTest {
 	public void testUserList() throws Exception {
 		this.mockMvc.perform(
 				get("/user/list")
-				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUxNjYwMjY1NjU5NywiZXhwIjoxNTE3MjA3NDU2fQ.kXYgYPFBKL4jKD_8zdsRtebkxMTpVC5YGZ3VhF83ieOYEQwhAzmGmJVwyC844cBSQL1cLWb38EsPlx9Gm3-hKw")
+				.header("Authorization", "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImF1ZGllbmNlIjoid2ViIiwiY3JlYXRlZCI6MTUyMTE3NjYwNTgyNSwiZXhwIjoxNTIxNzgxNDA1fQ.707UMCn7-DGa_s72etfS9rVGwwc--QBEq2DRQ6AdxfXXzrw7lybbpLkgjJBc1aufoVSIbRILRyxOxW8YaXEKww")
 				)
 		.andExpect(status().isOk()).andDo(print());
 	}

@@ -3,11 +3,11 @@ package io.github.upiota.framework.mybatis.data;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.data.domain.Sort;
-import org.springframework.data.repository.query.parser.OrderBySource;
 import org.springframework.data.repository.query.parser.Part;
 import org.springframework.data.repository.query.parser.Part.Type;
 import org.springframework.util.Assert;
@@ -394,7 +394,7 @@ public class PartTree implements Iterable<OrPart> {
 			}
 
 			buildTree(parts[0], domainClass);
-			this.orderBySource = parts.length == 2 ? new OrderBySource(parts[1], domainClass) : null;
+			this.orderBySource = parts.length == 2 ? new OrderBySource(parts[1], Optional.of(domainClass)) : OrderBySource.EMPTY;
 		}
 
 		private String detectAndSetAllIgnoreCase(String predicate) {

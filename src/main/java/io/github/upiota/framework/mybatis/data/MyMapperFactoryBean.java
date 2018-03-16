@@ -2,10 +2,12 @@ package io.github.upiota.framework.mybatis.data;
 
 import java.lang.reflect.Method;
 
+import org.apache.ibatis.mapping.MappedStatement;
+import org.apache.ibatis.mapping.SqlCommandType;
 import org.apache.ibatis.session.Configuration;
-import org.mybatis.spring.mapper.MapperFactoryBean;
 
 import tk.mybatis.mapper.mapperhelper.MapperHelper;
+import tk.mybatis.spring.mapper.MapperFactoryBean;
 
 public class MyMapperFactoryBean<T> extends MapperFactoryBean<T> {
 
@@ -25,6 +27,7 @@ public class MyMapperFactoryBean<T> extends MapperFactoryBean<T> {
 		Class<T> mi = getMapperInterface();
 		Method[] ms = mi.getDeclaredMethods();
 		Configuration config = this.getSqlSession().getConfiguration();
+		
 		for(Method m : ms){
 			String msId = mi.getName()+"."+m.getName();
 			if(config.hasStatement(msId,false)){

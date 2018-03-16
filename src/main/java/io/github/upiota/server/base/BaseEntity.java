@@ -3,44 +3,42 @@ package io.github.upiota.server.base;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Id;
 
 
 public class BaseEntity{
 
+	@Id
+	private Long id;
+	
+	@Column(name = "gmt_create")
+	private Date gmtCreate;
+	
+	@Column(name = "gmt_modified")
+	private Date gmtModified;
 
-	@Column(name = "create_by")
-	private Long createBy;
-	@Column(name = "create_at")
-	private Date createAt;
-	@Column(name = "update_by")
-	private Long updateBy;
-	@Column(name = "update_at")
-	private Date updateAt;
-	public Long getCreateBy() {
-		return createBy;
+	public Long getId() {
+		return id;
 	}
-	public void setCreateBy(Long createBy) {
-		this.createBy = createBy;
+
+	public void setId(Long id) {
+		this.id = id;
 	}
-	public Date getCreateAt() {
-		return createAt;
+
+	public Date getGmtCreate() {
+		return gmtCreate;
 	}
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
+
+	public void setGmtCreate(Date gmtCreate) {
+		this.gmtCreate = gmtCreate;
 	}
-	public Long getUpdateBy() {
-		return updateBy;
+
+	public Date getGmtModified() {
+		return gmtModified;
 	}
-	public void setUpdateBy(Long updateBy) {
-		this.updateBy = updateBy;
+
+	public void setGmtModified(Date gmtModified) {
+		this.gmtModified = gmtModified;
 	}
-	public Date getUpdateAt() {
-		return updateAt;
-	}
-	public void setUpdateAt(Date updateAt) {
-		this.updateAt = updateAt;
-	}
-	
-	
-	
+
 }
