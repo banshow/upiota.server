@@ -11,7 +11,7 @@
  Target Server Version : 50553
  File Encoding         : 65001
 
- Date: 17/03/2018 15:39:10
+ Date: 17/03/2018 16:32:59
 */
 
 SET NAMES utf8mb4;
@@ -33,8 +33,8 @@ CREATE TABLE `up_authority`  (
 -- ----------------------------
 -- Records of up_authority
 -- ----------------------------
-INSERT INTO `up_authority` VALUES (1, 'login_user_read', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_authority` VALUES (2, 'user_list_read', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `up_authority` VALUES (1, 'login_user_read', '2018-03-17 16:02:55', '2018-03-17 16:03:01');
+INSERT INTO `up_authority` VALUES (2, 'user_list_read', '2018-03-17 16:02:58', '2018-03-17 16:03:03');
 
 -- ----------------------------
 -- Table structure for up_dict
@@ -56,8 +56,8 @@ CREATE TABLE `up_dict`  (
 -- ----------------------------
 -- Records of up_dict
 -- ----------------------------
-INSERT INTO `up_dict` VALUES (1, 0, 'A', 'aaa', 'ddd', 10, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_dict` VALUES (2, 0, 'A', 'aaa', 'ddd', 10, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `up_dict` VALUES (1, 0, 'A', 'aaa', 'ddd', 10, '2018-03-17 16:05:33', '2018-03-17 16:05:38');
+INSERT INTO `up_dict` VALUES (2, 0, 'A', 'aaa', 'ddd', 10, '2018-03-17 16:05:35', '2018-03-17 16:05:40');
 
 -- ----------------------------
 -- Table structure for up_menu
@@ -79,18 +79,18 @@ CREATE TABLE `up_menu`  (
 -- ----------------------------
 -- Records of up_menu
 -- ----------------------------
-INSERT INTO `up_menu` VALUES (1, 0, 'dashboard', 'Dashboard', 'dashboard', 'dashboard', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (2, 1, 'analysis', '分析页', NULL, '/dashboard/analysis', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (3, 1, 'monitor', '监控页', NULL, '/dashboard/monitor', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (4, 1, 'workplace', '工作台', NULL, '/dashboard/workplace', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (5, 0, 'form', '表单页', 'form', 'form', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (6, 5, 'basic-form', '基础表单', NULL, '/form/basic-form', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (7, 5, 'step-form', '分步表单', NULL, '/form/step-form', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (8, 5, 'advanced-form', '高级表单', NULL, '/form/advanced-form', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (9, 0, 'list', '列表页', 'table', 'list', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (10, 9, 'table-list', '查询表格', NULL, '/list/table-list', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (11, 9, 'basic-list', '标准列表', NULL, '/list/basic-list', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_menu` VALUES (12, 9, 'card-list', '卡片列表', NULL, '/list/card-list', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `up_menu` VALUES (1, 0, 'dashboard', 'Dashboard', 'dashboard', 'dashboard', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (2, 1, 'analysis', '分析页', NULL, '/dashboard/analysis', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (3, 1, 'monitor', '监控页', NULL, '/dashboard/monitor', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (4, 1, 'workplace', '工作台', NULL, '/dashboard/workplace', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (5, 0, 'form', '表单页', 'form', 'form', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (6, 5, 'basic-form', '基础表单', NULL, '/form/basic-form', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (7, 5, 'step-form', '分步表单', NULL, '/form/step-form', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (8, 5, 'advanced-form', '高级表单', NULL, '/form/advanced-form', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (9, 0, 'list', '列表页', 'table', 'list', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (10, 9, 'table-list', '查询表格', NULL, '/list/table-list', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (11, 9, 'basic-list', '标准列表', NULL, '/list/basic-list', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
+INSERT INTO `up_menu` VALUES (12, 9, 'card-list', '卡片列表', NULL, '/list/card-list', NULL, '2018-03-17 16:05:20', '2018-03-17 16:05:20');
 
 -- ----------------------------
 -- Table structure for up_role
@@ -109,8 +109,8 @@ CREATE TABLE `up_role`  (
 -- ----------------------------
 -- Records of up_role
 -- ----------------------------
-INSERT INTO `up_role` VALUES (1, 'admin', '管理员', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_role` VALUES (2, 'user', '普通用户', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `up_role` VALUES (1, 'admin', '管理员', '2018-03-17 16:03:13', '2018-03-17 16:03:18');
+INSERT INTO `up_role` VALUES (2, 'user', '普通用户', '2018-03-17 16:03:16', '2018-03-17 16:03:22');
 
 -- ----------------------------
 -- Table structure for up_role_authority
@@ -129,10 +129,10 @@ CREATE TABLE `up_role_authority`  (
 -- ----------------------------
 -- Records of up_role_authority
 -- ----------------------------
-INSERT INTO `up_role_authority` VALUES (1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_role_authority` VALUES (2, 2, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_role_authority` VALUES (3, 1, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
-INSERT INTO `up_role_authority` VALUES (4, 2, 2, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `up_role_authority` VALUES (1, 1, 1, '2018-03-17 16:05:51', '2018-03-17 16:06:02');
+INSERT INTO `up_role_authority` VALUES (2, 2, 1, '2018-03-17 16:05:55', '2018-03-17 16:06:04');
+INSERT INTO `up_role_authority` VALUES (3, 1, 2, '2018-03-17 16:05:56', '2018-03-17 16:06:06');
+INSERT INTO `up_role_authority` VALUES (4, 2, 2, '2018-03-17 16:06:00', '2018-03-17 16:06:08');
 
 -- ----------------------------
 -- Table structure for up_user
@@ -151,9 +151,7 @@ CREATE TABLE `up_user`  (
 -- ----------------------------
 -- Records of up_user
 -- ----------------------------
-INSERT INTO `up_user` VALUES (1, 'admin', '$2a$10$P8fKrE.gDOQBQug4dbF9Se1nj7yOSoEHCGh7yuH4S4CnYe2gCFO82', '2017-09-20 14:48:58', '0000-00-00 00:00:00');
-INSERT INTO `up_user` VALUES (2, 'aaa', 'aaa', '2018-03-16 15:45:46', '0000-00-00 00:00:00');
-INSERT INTO `up_user` VALUES (3, 'aaaa', 'aaa', '2018-03-16 15:47:06', '0000-00-00 00:00:00');
+INSERT INTO `up_user` VALUES (1, 'admin', '$2a$10$P8fKrE.gDOQBQug4dbF9Se1nj7yOSoEHCGh7yuH4S4CnYe2gCFO82', '2017-09-20 14:48:58', '2018-03-17 16:02:10');
 
 -- ----------------------------
 -- Table structure for up_user_role
@@ -172,6 +170,6 @@ CREATE TABLE `up_user_role`  (
 -- ----------------------------
 -- Records of up_user_role
 -- ----------------------------
-INSERT INTO `up_user_role` VALUES (1, 1, 1, '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `up_user_role` VALUES (1, 1, 1, '2018-03-17 16:02:40', '2018-03-17 16:02:44');
 
 SET FOREIGN_KEY_CHECKS = 1;

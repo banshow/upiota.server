@@ -57,11 +57,15 @@ public class ApplicationTests {
 	@Test
 	public void userTest() {
 		User u = new User();
-		u.setUsername("aaaa");
+		u.assignDefault();
+		u.setUsername("aaaaaa");
 		u.setPassword("aaa");
-		u.setGmtCreate(new Date());
+//		u.setId(100l);
+//		u.setCreateAt(new Date());
+//		u.setModifiedAt(new Date());
+//		System.out.println(u);
 		userMapper.insertSelective(u);
-		//System.out.println(userMapper.selectUsernameByUsername("admin"));
+		//System.out.println(userMapper.selectAll());
 	}
 	
 	@Test

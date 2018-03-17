@@ -4,6 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import io.github.upiota.server.util.IdUtils;
 
 
 public class BaseEntity{
@@ -11,11 +14,11 @@ public class BaseEntity{
 	@Id
 	private Long id;
 	
-	@Column(name = "gmt_create")
-	private Date gmtCreate;
+	@Column(name = "create_at")
+	private Date createAt;
 	
-	@Column(name = "gmt_modified")
-	private Date gmtModified;
+	@Column(name = "modified_at")
+	private Date modifiedAt;
 
 	public Long getId() {
 		return id;
@@ -25,20 +28,26 @@ public class BaseEntity{
 		this.id = id;
 	}
 
-	public Date getGmtCreate() {
-		return gmtCreate;
+	public Date getCreateAt() {
+		return createAt;
 	}
 
-	public void setGmtCreate(Date gmtCreate) {
-		this.gmtCreate = gmtCreate;
+	public void setCreateAt(Date createAt) {
+		this.createAt = createAt;
 	}
 
-	public Date getGmtModified() {
-		return gmtModified;
+	public Date getModifiedAt() {
+		return modifiedAt;
 	}
 
-	public void setGmtModified(Date gmtModified) {
-		this.gmtModified = gmtModified;
+	public void setModifiedAt(Date modifiedAt) {
+		this.modifiedAt = modifiedAt;
 	}
 
+	public void assignDefault() {
+		this.setId(IdUtils.genId());
+		Date now = new Date();
+		this.setCreateAt(now);
+		this.setModifiedAt(now);
+	}
 }
