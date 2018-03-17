@@ -11,7 +11,7 @@
  Target Server Version : 50553
  File Encoding         : 65001
 
- Date: 16/03/2018 16:47:11
+ Date: 17/03/2018 15:39:10
 */
 
 SET NAMES utf8mb4;
@@ -24,8 +24,8 @@ DROP TABLE IF EXISTS `up_authority`;
 CREATE TABLE `up_authority`  (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '主键',
   `authority_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '权限码',
-  `gmt_create` datetime NOT NULL COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  `create_at` datetime NOT NULL COMMENT '创建时间',
+  `modified_at` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_authority_code`(`authority_code`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -47,8 +47,8 @@ CREATE TABLE `up_dict`  (
   `label` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '标签',
   `value` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '值',
   `sort` int(10) NOT NULL DEFAULT 0 COMMENT '排序',
-  `gmt_create` datetime NOT NULL COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  `create_at` datetime NOT NULL COMMENT '创建时间',
+  `modified_at` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `nk_type`(`type`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -71,8 +71,8 @@ CREATE TABLE `up_menu`  (
   `icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '菜单图标',
   `path` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '菜单路径',
   `target` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '目标窗口',
-  `gmt_create` datetime NOT NULL COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  `create_at` datetime NOT NULL COMMENT '创建时间',
+  `modified_at` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
@@ -100,8 +100,8 @@ CREATE TABLE `up_role`  (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '角色标识,主键',
   `role_name` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色名',
   `role_desc` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '角色描述',
-  `gmt_create` datetime NOT NULL COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  `create_at` datetime NOT NULL COMMENT '创建时间',
+  `modified_at` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_role_name`(`role_name`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -120,8 +120,8 @@ CREATE TABLE `up_role_authority`  (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '主键',
   `role_id` bigint(20) NOT NULL,
   `authority_id` bigint(20) NOT NULL,
-  `gmt_create` datetime NOT NULL COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  `create_at` datetime NOT NULL COMMENT '创建时间',
+  `modified_at` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_role_id_authority_id`(`role_id`, `authority_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -142,8 +142,8 @@ CREATE TABLE `up_user`  (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '用户标识,主键',
   `username` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户登录名',
   `password` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户登录密码',
-  `gmt_create` datetime NOT NULL COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  `create_at` datetime NOT NULL COMMENT '创建时间',
+  `modified_at` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_username`(`username`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
@@ -163,8 +163,8 @@ CREATE TABLE `up_user_role`  (
   `id` bigint(20) UNSIGNED NOT NULL COMMENT '主键',
   `user_id` bigint(20) UNSIGNED NOT NULL COMMENT '用户id',
   `role_id` bigint(20) UNSIGNED NOT NULL COMMENT '角色id',
-  `gmt_create` datetime NOT NULL COMMENT '创建时间',
-  `gmt_modified` datetime NOT NULL COMMENT '更新时间',
+  `create_at` datetime NOT NULL COMMENT '创建时间',
+  `modified_at` datetime NOT NULL COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `uk_user_role`(`user_id`, `role_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
