@@ -20,8 +20,8 @@ import io.github.upiota.server.security.JwtAuthenticationEntryPoint;
 import io.github.upiota.server.security.JwtAuthenticationTokenFilter;
 import io.github.upiota.server.security.MyAccessDeniedHandler;
 
-@Configuration
-@EnableWebSecurity
+//@Configuration
+//@EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired

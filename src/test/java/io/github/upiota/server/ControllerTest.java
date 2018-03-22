@@ -86,6 +86,21 @@ public class ControllerTest {
 	}
 	
 	@Test
+	public void testOauth2() throws Exception {
+		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
+		params.add("username", "admin");
+		params.add("password", "admin1");
+		params.add("grant_type", "password");
+		params.add("scope", "select");
+		params.add("client_id", "client_2");
+		params.add("client_secret", "123456");
+		this.mockMvc.perform(
+				post("/oauth/token")
+				.params(params)		
+				)
+		.andExpect(status().isOk()).andDo(print());
+	}
+	@Test
 	public void testAuth() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		Map<String,String> map = new HashMap<String,String>();

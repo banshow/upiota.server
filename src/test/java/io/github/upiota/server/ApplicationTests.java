@@ -102,7 +102,7 @@ public class ApplicationTests {
 	}
 	
 	@Test
-	public void contextLoads() throws Exception {	
+	public void contextLoads() throws Exception {
 //		Dict d = new Dict();
 //		d.setType("SEX");
 //		Iterable<Dict> list = dictRepository.findAll(Example.of(d));
