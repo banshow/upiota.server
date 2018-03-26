@@ -6,10 +6,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.executor.keygen.KeyGenerator;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +22,6 @@ import org.springframework.util.MultiValueMap;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import io.github.upiota.server.sys.entity.Role;
-import io.github.upiota.server.sys.entity.User;
-import io.github.upiota.server.sys.entity.UserRole;
 import io.github.upiota.server.sys.mapper.RoleMapper;
 import io.github.upiota.server.sys.mapper.UserMapper;
 import io.github.upiota.server.sys.mapper.UserRoleMapper;
@@ -89,7 +84,7 @@ public class ControllerTest {
 	public void testOauth2() throws Exception {
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
 		params.add("username", "admin");
-		params.add("password", "admin1");
+		params.add("password", "admin");
 		params.add("grant_type", "password");
 		params.add("scope", "select");
 		params.add("client_id", "client_2");

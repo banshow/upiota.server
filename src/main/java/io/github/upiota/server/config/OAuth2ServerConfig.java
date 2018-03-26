@@ -20,6 +20,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Res
 
 import io.github.upiota.server.security.JwtAuthenticationEntryPoint;
 import io.github.upiota.server.security.MyAccessDeniedHandler;
+import io.github.upiota.server.security.MyWebResponseExceptionTranslator;
 
 
 @Configuration
@@ -76,9 +77,7 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-            
-        	
-        	endpoints//.exceptionTranslator()
+        	endpoints.exceptionTranslator(new MyWebResponseExceptionTranslator())
                     //.tokenStore(new RedisTokenStore(redisConnectionFactory))
                     .authenticationManager(authenticationManager);
         }
