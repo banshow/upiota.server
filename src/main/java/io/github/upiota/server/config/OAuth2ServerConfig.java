@@ -2,12 +2,12 @@ package io.github.upiota.server.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -17,9 +17,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenStore;
 
 import io.github.upiota.server.security.JwtAuthenticationEntryPoint;
 import io.github.upiota.server.security.MyAccessDeniedHandler;
+import io.github.upiota.server.security.MyRedisTokenStore;
 import io.github.upiota.server.security.MyWebResponseExceptionTranslator;
 
 
@@ -27,11 +29,11 @@ import io.github.upiota.server.security.MyWebResponseExceptionTranslator;
 public class OAuth2ServerConfig {
 
     private static final String DEMO_RESOURCE_ID = "order";
-
+    
     @Configuration
     @EnableResourceServer
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-
+    	
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
             resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
@@ -53,9 +55,14 @@ public class OAuth2ServerConfig {
     	@Qualifier("authenticationManagerBean")
     	private AuthenticationManager authenticationManager;
         @Autowired
-        RedisConnectionFactory redisConnectionFactory;
+        private RedisConnectionFactory redisConnectionFactory;
         @Autowired
     	private JwtAuthenticationEntryPoint unauthorizedHandler;
+        
+        @Bean
+    	public TokenStore tokenStore() {
+    		return new MyRedisTokenStore(redisConnectionFactory);
+    	}
 
         @Override
         public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
@@ -78,7 +85,7 @@ public class OAuth2ServerConfig {
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
         	endpoints.exceptionTranslator(new MyWebResponseExceptionTranslator())
-                    //.tokenStore(new RedisTokenStore(redisConnectionFactory))
+                    .tokenStore(tokenStore())
                     .authenticationManager(authenticationManager);
         }
 

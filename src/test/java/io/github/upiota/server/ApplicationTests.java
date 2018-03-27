@@ -12,6 +12,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Example;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.lettuce.LettuceConnection;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -40,6 +43,16 @@ public class ApplicationTests {
 	@Autowired
 	private MenuMapper menuMapper;
 	
+	@Autowired  
+    private RedisTemplate<Object, Object> redisTemplate;
+	
+	@Test
+	public void userRedis() {
+//		RedisConnection c = new LettuceConnection(0,null);
+//		c.set(null,null);
+		//System.out.println(redisTemplate);
+		redisTemplate.opsForValue().set("aaa", "111");
+	}
 	private void recursive(List<Menu> list,Map<Long,List<Menu>> map) {
 		for(Menu m:list) {
 			Long id = m.getId();
