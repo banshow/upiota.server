@@ -3,7 +3,6 @@ package io.github.upiota.server.config;
 import javax.servlet.Filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -19,12 +18,12 @@ import org.springframework.security.oauth2.client.token.grant.code.Authorization
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 
 
-//@Configuration
-//@EnableOAuth2Client
+@Configuration
+@EnableOAuth2Client
 public class GithubOAuth2Client {
 	
 	@Autowired
-	private OAuth2ClientContext oauth2ClientContext;
+	OAuth2ClientContext oauth2ClientContext;
 
 	
 	@Bean
@@ -47,5 +46,17 @@ public class GithubOAuth2Client {
 	public ResourceServerProperties githubResource() {
 		return new ResourceServerProperties();
 	}
+
+	@Bean
+	public Filter ssoFilter() {
+		OAuth2ClientAuthenticationProcessingFilter githubFilter = new OAuth2ClientAuthenticationProcessingFilter("/github/login");
+		OAuth2RestTemplate githubTemplate = new OAuth2RestTemplate(github(), oauth2ClientContext);
+		githubFilter.setRestTemplate(githubTemplate);
+		UserInfoTokenServices tokenServices = new UserInfoTokenServices(githubResource().getUserInfoUri(),github().getClientId());
+		tokenServices.setRestTemplate(githubTemplate);
+		githubFilter.setTokenServices(tokenServices);
+		return githubFilter;
+	}
+
 
 }
