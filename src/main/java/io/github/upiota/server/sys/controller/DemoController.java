@@ -10,12 +10,16 @@ public class DemoController {
 	
 	
 	@RequestMapping({"/","/index"})
-	public String index(Principal principal) {
-		System.out.println(principal);
-		return "aaa";
+	public Principal index(Principal principal) {
+		return principal;
 	}
 	@RequestMapping({"/user"})
 	public String user(Principal principal) {
+		System.out.println(principal);
+		return "aaa";
+	}
+	@RequestMapping({"/aaa"})
+	public String aaa(Principal principal) {
 		System.out.println(principal);
 		return "aaa";
 	}

@@ -6,7 +6,6 @@ import javax.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -16,9 +15,11 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+
+import io.github.upiota.server.security.JwtAuthenticationEntryPoint;
+import io.github.upiota.server.security.MyAccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
@@ -27,8 +28,11 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+//	@Autowired
+//	private Filter ssoFilter;
+	
 	@Autowired
-	private Filter ssoFilter;
+ 	private JwtAuthenticationEntryPoint unauthorizedHandler;
 
 	@Bean
 	@Override
@@ -54,16 +58,6 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	//@Configuration
-	//@EnableResourceServer
-	protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
-		@Override
-		public void configure(HttpSecurity http) throws Exception {
-			// @formatter:off
-			http.antMatcher("/me").authorizeRequests().anyRequest().authenticated();
-			// @formatter:on
-		}
-	}
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/swagger-resources/**", "/webjars/**", "/v2/api-docs", "/swagger-ui.html", "/",
@@ -76,8 +70,10 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 		 .authorizeRequests()
          .antMatchers("/oauth/*").permitAll()
          .anyRequest().authenticated()
-         //.and().csrf()
+         .and().csrf()
+         .disable()
          //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-         .and().addFilterBefore(ssoFilter, BasicAuthenticationFilter.class);
+         //.addFilterBefore(ssoFilter, BasicAuthenticationFilter.class)
+         .exceptionHandling().accessDeniedHandler(new MyAccessDeniedHandler()).authenticationEntryPoint(unauthorizedHandler);
 	}
 }
