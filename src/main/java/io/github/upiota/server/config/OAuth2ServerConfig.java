@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,6 +19,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 
+import io.github.upiota.server.security.MyAuthenticationEntryPoint;
 import io.github.upiota.server.security.MyAccessDeniedHandler;
 import io.github.upiota.server.security.MyRedisTokenStore;
 import io.github.upiota.server.security.MyWebResponseExceptionTranslator;
@@ -32,15 +34,21 @@ public class OAuth2ServerConfig {
     @EnableResourceServer
     protected static class ResourceServerConfiguration extends ResourceServerConfigurerAdapter {
     	
+    	@Autowired
+     	private MyAuthenticationEntryPoint unauthorizedHandler;
+    	
         @Override
         public void configure(ResourceServerSecurityConfigurer resources) {
-            resources.resourceId(DEMO_RESOURCE_ID).stateless(true);
+            resources.resourceId(DEMO_RESOURCE_ID).stateless(true).authenticationEntryPoint(unauthorizedHandler);
         }
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
-        	http.antMatcher("/user").authorizeRequests().anyRequest().authenticated();
-        	http.exceptionHandling().accessDeniedHandler(new MyAccessDeniedHandler());
+        	http.antMatcher("/user/**").authorizeRequests().anyRequest().authenticated();
+//        	.and().exceptionHandling().accessDeniedHandler(new MyAccessDeniedHandler()).authenticationEntryPoint(unauthorizedHandler);
+//        	http.authorizeRequests()
+//        	.antMatchers(HttpMethod.OPTIONS).permitAll()
+//        	.anyRequest().authenticated();
         }
     }
 
@@ -80,7 +88,7 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        	endpoints.exceptionTranslator(new MyWebResponseExceptionTranslator())
+        	endpoints//.exceptionTranslator(new MyWebResponseExceptionTranslator())
                     .tokenStore(tokenStore())
                     .authenticationManager(authenticationManager);
         }

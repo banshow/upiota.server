@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.oauth2.client.resource.OAuth2AccessDeniedException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -36,12 +37,26 @@ public class RestExceptionHandler {
         return RestResultGenerator.genErrorResult(e.getMessage(),ExceptionCodeEnum.INTERNAL_SERVER_ERROR.name());
     }
 
-    
+    /**
+     * 无权访问异常处理
+     * @param e
+     * @return
+     * @throws Exception
+     */
     @ExceptionHandler(value=AccessDeniedException.class)
     @ResponseBody
-    public ResponseResult handleAccessDeniedException(Exception e) {
-    	   logger.error("--------->接口调用异常!", e);
-           return RestResultGenerator.genErrorResult(ExceptionCodeEnum.AUTH.toCnString(),ExceptionCodeEnum.AUTH.name());
+    public ResponseResult handleAccessDeniedException(Exception e) throws Exception {
+    	throw e;
+    }
+    
+    /**
+     * OAuth2客户端访问异常处理
+     */
+    @ExceptionHandler(value=OAuth2AccessDeniedException.class)
+    @ResponseBody
+    public ResponseResult handleOAuth2AccessDeniedException(Exception e) {
+    	logger.error("--------->OAuth2客户端访问异常!", e);
+    	return RestResultGenerator.genErrorResult(e.getCause().getMessage(),ExceptionCodeEnum.BUSINESS_ERROR.name());
     }
     
     /**

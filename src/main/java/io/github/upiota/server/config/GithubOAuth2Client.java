@@ -13,24 +13,29 @@ import org.springframework.boot.context.properties.NestedConfigurationProperty;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2ClientContext;
 import org.springframework.security.oauth2.client.OAuth2RestTemplate;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientAuthenticationProcessingFilter;
 import org.springframework.security.oauth2.client.filter.OAuth2ClientContextFilter;
+import org.springframework.security.oauth2.client.token.AccessTokenRequest;
+import org.springframework.security.oauth2.client.token.DefaultAccessTokenRequest;
 import org.springframework.security.oauth2.client.token.grant.code.AuthorizationCodeResourceDetails;
+import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordAccessTokenProvider;
+import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.web.filter.CompositeFilter;
 
-//@Configuration
-//@EnableOAuth2Client
+@Configuration
+@EnableOAuth2Client
 public class GithubOAuth2Client {
-	
+
 	@Autowired
 	OAuth2ClientContext oauth2ClientContext;
 
-	
 	@Bean
-	public FilterRegistrationBean<OAuth2ClientContextFilter> oauth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
+	public FilterRegistrationBean<OAuth2ClientContextFilter> oauth2ClientFilterRegistration(
+			OAuth2ClientContextFilter filter) {
 		FilterRegistrationBean<OAuth2ClientContextFilter> registration = new FilterRegistrationBean<OAuth2ClientContextFilter>();
 		registration.setFilter(filter);
 		registration.setOrder(-100);
@@ -51,22 +56,18 @@ public class GithubOAuth2Client {
 		filter.setFilters(filters);
 		return filter;
 	}
-	
-	
-	
+
 	private Filter ssoFilter(ClientResources client, String path) {
-		OAuth2ClientAuthenticationProcessingFilter filter = new OAuth2ClientAuthenticationProcessingFilter(
-				path);
+		OAuth2ClientAuthenticationProcessingFilter filter = new OAuth2ClientAuthenticationProcessingFilter(path);
 		OAuth2RestTemplate template = new OAuth2RestTemplate(client.getClient(), oauth2ClientContext);
 		filter.setRestTemplate(template);
-		UserInfoTokenServices tokenServices = new UserInfoTokenServices(
-				client.getResource().getUserInfoUri(), client.getClient().getClientId());
+		UserInfoTokenServices tokenServices = new UserInfoTokenServices(client.getResource().getUserInfoUri(),
+				client.getClient().getClientId());
 		tokenServices.setRestTemplate(template);
 		filter.setTokenServices(tokenServices);
 		return filter;
 	}
 
-	
 	class ClientResources {
 
 		@NestedConfigurationProperty
@@ -84,5 +85,19 @@ public class GithubOAuth2Client {
 		}
 	}
 
+	@Bean
+	public OAuth2RestTemplate restTemplate() {
+		AccessTokenRequest atr = new DefaultAccessTokenRequest();
+		OAuth2RestTemplate template = new OAuth2RestTemplate(local(), new DefaultOAuth2ClientContext(atr));
+		ResourceOwnerPasswordAccessTokenProvider provider = new ResourceOwnerPasswordAccessTokenProvider();
+		template.setAccessTokenProvider(provider);
+		return template;
+	}
+
+	@Bean
+	@ConfigurationProperties("local.client")
+	public ResourceOwnerPasswordResourceDetails local() {
+		return new ResourceOwnerPasswordResourceDetails();
+	}
 
 }

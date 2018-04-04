@@ -18,7 +18,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import io.github.upiota.server.base.ResponseResult;
 import io.github.upiota.server.base.RestResultGenerator;
 
-@Configuration
+//@Configuration
 public class MyWebMvcConfig implements WebMvcConfigurer {
 
 	@Bean
@@ -48,12 +48,12 @@ public class MyWebMvcConfig implements WebMvcConfigurer {
 					super.writeInternal(result, result.getClass(), outputMessage);
 					return;
 				}
-				
-				if(!(object instanceof ResponseResult)) {
-					ResponseResult result = RestResultGenerator.genResult("成功!").putData("result", object);
-					super.writeInternal(result, result.getClass(), outputMessage);
-					return;
-				}
+//				
+//				if(!(object instanceof ResponseResult)) {
+//					ResponseResult result = RestResultGenerator.genResult("成功!").putData("result", object);
+//					super.writeInternal(result, result.getClass(), outputMessage);
+//					return;
+//				}
 				
 				super.writeInternal(object, type, outputMessage);
 			}

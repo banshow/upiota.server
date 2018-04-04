@@ -13,7 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.cors.CorsUtils;
 
-import io.github.upiota.server.security.JwtAuthenticationEntryPoint;
+import io.github.upiota.server.security.MyAuthenticationEntryPoint;
 import io.github.upiota.server.security.MyAccessDeniedHandler;
 
 //@Configuration
@@ -21,7 +21,7 @@ import io.github.upiota.server.security.MyAccessDeniedHandler;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private JwtAuthenticationEntryPoint unauthorizedHandler;
+	private MyAuthenticationEntryPoint unauthorizedHandler;
 
 	@Autowired
 	private MyAccessDeniedHandler accessDeniedHandler;

@@ -1,0 +1,77 @@
+server:
+    port: 8888
+spring:
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: root
+        url: jdbc:mysql://localhost:3306/test?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf-8
+        username: root
+    jpa:
+        database: MYSQL
+    messages:
+        basename: i18n/messages_zh_CN
+    mvc:
+        dispatch-options-request: true
+    redis:
+        database: 0
+        host: localhost
+        lettuce:
+            pool:
+                max-active: 2000
+                max-idle: 500
+                max-wait: 1000
+                min-idle: 50
+            shutdown-timeout: 100
+        password: ''
+        port: 6379
+        timeout: 3000
+coder:
+    base-package: io.github.upiota.server.sys
+    driver: ${spring.datasource.driver-class-name}
+    java-target-project: E:/stsws/upiota.server/src/main/java
+    password: ${spring.datasource.password}
+    resources-target-project: E:/stsws/upiota.server/src/main/resources/mapper
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    util-package: io.github.upiota.server.util
+github:
+    client:
+        accessTokenUri: https://github.com/login/oauth/access_token
+        authenticationScheme: query
+        clientAuthenticationScheme: form
+        clientId: c139f9e48ea7301e0e09
+        clientSecret: 4f41983ddb0c239a95ec58e35ce439a182bada20
+        tokenName: oauth_token
+        userAuthorizationUri: https://github.com/login/oauth/authorize
+    resource:
+        userInfoUri: https://api.github.com/user
+local:
+    client:
+      client-id: client_2
+      client-secret: 123456
+      access-token-uri: http://localhost:8888/oauth/token
+jwt:
+    expiration: 604800
+    header: Authorization
+    route:
+        authentication:
+            path: auth
+            refresh: refresh
+    secret: mySecret
+mapper:
+    identity: MYSQL
+    mappers: io.github.upiota.server.util.MyMapper
+    not-empty: false
+mybatis:
+    configuration:
+        return-instance-for-empty-row: true
+    mapper-locations: classpath*:mapper/**/*.xml
+    type-aliases-package: io.github.upiota.server.entity,io.github.upiota.server.sys.entity
+pagehelper:
+    helperDialect: mysql
+    params: count=countSql
+    reasonable: true
+    supportMethodsArguments: true
+logging:
+  level:
+    org.springframework.security: DEBUG

@@ -1,6 +1,7 @@
 package io.github.upiota.server.config;
 
 
+
 import javax.servlet.Filter;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
-import io.github.upiota.server.security.JwtAuthenticationEntryPoint;
+import io.github.upiota.server.security.MyAuthenticationEntryPoint;
 import io.github.upiota.server.security.MyAccessDeniedHandler;
 
 @Configuration
@@ -28,11 +29,11 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
-//	@Autowired
-//	private Filter ssoFilter;
+	@Autowired
+	private Filter ssoFilter;
 	
 	@Autowired
- 	private JwtAuthenticationEntryPoint unauthorizedHandler;
+ 	private MyAuthenticationEntryPoint unauthorizedHandler;
 
 	@Bean
 	@Override
@@ -69,11 +70,10 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 		httpSecurity
 		 .authorizeRequests()
          .antMatchers("/oauth/*").permitAll()
+         .antMatchers("/login").permitAll()
          .anyRequest().authenticated()
-         .and().csrf()
-         .disable()
-         //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-         //.addFilterBefore(ssoFilter, BasicAuthenticationFilter.class)
-         .exceptionHandling().accessDeniedHandler(new MyAccessDeniedHandler()).authenticationEntryPoint(unauthorizedHandler);
+         .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+         .and().addFilterBefore(ssoFilter, BasicAuthenticationFilter.class);
+         //.exceptionHandling().accessDeniedHandler(new MyAccessDeniedHandler()).authenticationEntryPoint(unauthorizedHandler);
 	}
 }
