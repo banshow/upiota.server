@@ -87,8 +87,7 @@ public class GithubOAuth2Client {
 
 	@Bean
 	public OAuth2RestTemplate restTemplate() {
-		AccessTokenRequest atr = new DefaultAccessTokenRequest();
-		OAuth2RestTemplate template = new OAuth2RestTemplate(local(), new DefaultOAuth2ClientContext(atr));
+		OAuth2RestTemplate template = new OAuth2RestTemplate(local(), oauth2ClientContext);
 		ResourceOwnerPasswordAccessTokenProvider provider = new ResourceOwnerPasswordAccessTokenProvider();
 		template.setAccessTokenProvider(provider);
 		return template;

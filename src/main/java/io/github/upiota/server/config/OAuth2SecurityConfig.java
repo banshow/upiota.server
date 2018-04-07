@@ -20,6 +20,7 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 import io.github.upiota.server.security.MyAuthenticationEntryPoint;
+import io.github.upiota.server.security.OAuth2UrlLogoutSuccessHandler;
 import io.github.upiota.server.security.MyAccessDeniedHandler;
 
 @Configuration
@@ -34,6 +35,9 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Autowired
  	private MyAuthenticationEntryPoint unauthorizedHandler;
+	
+	@Autowired
+	private OAuth2UrlLogoutSuccessHandler oAuth2UrlLogoutSuccessHandler;
 
 	@Bean
 	@Override
@@ -69,11 +73,12 @@ public class OAuth2SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity
 		 .authorizeRequests()
-         .antMatchers("/oauth/*").permitAll()
-         .antMatchers("/login").permitAll()
+         .antMatchers("/oauth/*","/error").permitAll()
+         .antMatchers("/login","/index").permitAll()
          .anyRequest().authenticated()
-         .and().csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-         .and().addFilterBefore(ssoFilter, BasicAuthenticationFilter.class);
+         .and().logout().logoutSuccessHandler(oAuth2UrlLogoutSuccessHandler)//.logoutSuccessUrl("http://localhost:8888/oauth/exit")
+         .and().csrf().disable()//.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+         .addFilterBefore(ssoFilter, BasicAuthenticationFilter.class);
          //.exceptionHandling().accessDeniedHandler(new MyAccessDeniedHandler()).authenticationEntryPoint(unauthorizedHandler);
 	}
 }

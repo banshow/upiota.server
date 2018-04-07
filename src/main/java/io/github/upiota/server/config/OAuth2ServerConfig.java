@@ -44,8 +44,8 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
-        	http.antMatcher("/user/**").authorizeRequests().anyRequest().authenticated();
-//        	.and().exceptionHandling().accessDeniedHandler(new MyAccessDeniedHandler()).authenticationEntryPoint(unauthorizedHandler);
+        	http.antMatcher("/user/**").authorizeRequests().anyRequest().authenticated()
+        	.and().exceptionHandling().accessDeniedHandler(new MyAccessDeniedHandler()).authenticationEntryPoint(unauthorizedHandler);
 //        	http.authorizeRequests()
 //        	.antMatchers(HttpMethod.OPTIONS).permitAll()
 //        	.anyRequest().authenticated();

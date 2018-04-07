@@ -11,7 +11,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 @SpringBootApplication
 @EnableConfigurationProperties({ CoderProperties.class })
 @MapperScan(basePackages = { "io.github.upiota.server.mapper",
-		"io.github.upiota.server.sys.mapper"},factoryBean=MyMapperFactoryBean.class)
+		"io.github.upiota.framework.sys.mapper"},factoryBean=MyMapperFactoryBean.class)
 // @EnableMybatisRepositories(repositoryFactoryBeanClass=CustomMybatisRepositoryFactoryBean.class,repositoryBaseClass=CustomSimpleMybatisRepository.class)
 public class Application{
 
